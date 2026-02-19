@@ -6,7 +6,7 @@
 /*   By: jvalkama <jvalkama@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:29:04 by jvalkama          #+#    #+#             */
-/*   Updated: 2026/02/18 17:00:45 by jvalkama         ###   ########.fr       */
+/*   Updated: 2026/02/19 12:44:44 by jvalkama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) : _name(other.getName()), _hp(other.ge
 }
 
 //NAME CONSTRUCTOR OVERLOAD
-ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10), _dmg(0) {
+ClapTrap::ClapTrap(std::string name, int hp=10, int ep=10, int dmg=0) : _name(name), _hp(hp), _ep(ep), _dmg(dmg) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
@@ -34,7 +34,7 @@ ClapTrap::~ClapTrap(void) {
 
 //ASSIGNMENT OPERATOR
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "ClapTrap copy assignment operator called" << std::endl;
 	if (this != &other) {
 		this->_name = other.getName();
 		this->_hp = other.getHp();
@@ -74,7 +74,6 @@ bool	ClapTrap::_hasEnergy(void) const {
 	return (this->_ep > 0);
 }
 
-
 //GETTERS
 std::string	ClapTrap::getName(void) const {
 	return this->_name;
@@ -90,4 +89,21 @@ int	ClapTrap::getEp(void) const {
 
 int	ClapTrap::getDmg(void) const {
 	return this->_dmg;
+}
+
+//SETTERS
+void	ClapTrap::setName(std::string name) {
+	this->_name = name;
+}
+
+void	ClapTrap::setHp(int amount) {
+	this->_hp= amount;
+}
+
+void	ClapTrap::setEp(int amount) {
+	this->_ep= amount;
+}
+
+void	ClapTrap::setDmg(int amount) {
+	this->_dmg = amount;
 }

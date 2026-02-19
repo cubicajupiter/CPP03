@@ -6,7 +6,7 @@
 /*   By: jvalkama <jvalkama@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:29:02 by jvalkama          #+#    #+#             */
-/*   Updated: 2026/02/18 16:59:36 by jvalkama         ###   ########.fr       */
+/*   Updated: 2026/02/19 10:48:49 by jvalkama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ class ClapTrap {
 
 		bool		_hasHealth () const ;
 		bool		_hasEnergy () const ;
+		void		_logPut ( std::string, int ) const ;
 
 	public:
 
 		ClapTrap				();
 		ClapTrap				( const ClapTrap& );
-		ClapTrap				( std::string );
+		ClapTrap				( std::string, int, int, int );
 		~ClapTrap				();
 		ClapTrap&	operator=	( const ClapTrap& );
 

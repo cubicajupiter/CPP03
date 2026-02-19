@@ -6,7 +6,7 @@
 /*   By: jvalkama <jvalkama@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:29:04 by jvalkama          #+#    #+#             */
-/*   Updated: 2026/02/18 16:59:35 by jvalkama         ###   ########.fr       */
+/*   Updated: 2026/02/19 12:43:14 by jvalkama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ ClapTrap::~ClapTrap(void) {
 	std::cout << "Claptrap " << this->_name << " destroyed." << std::endl;
 }
 
-//ASSIGNMENT OPERATOR
+//ASSIGNMENT OPERATOR OVERLOAD
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other) {
@@ -48,7 +48,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 //SUBJECT FUNCTIONS
 void	ClapTrap::attack(const std::string& target)
 {
-	if (this->hasHealth() && this->hasEnergy()) {
+	if (this->_hasHealth() && this->_hasEnergy()) {
 		std::cout << "Claptrap " << this->_name << " attacks " << target << ", causing " << this->_dmg << " points of damage!" << std::endl;
 	}
 }
@@ -90,21 +90,4 @@ int	ClapTrap::getEp(void) const {
 
 int	ClapTrap::getDmg(void) const {
 	return this->_dmg;
-}
-
-//SETTERS
-void	ClapTrap::setName(std::string name) {
-	this->_name = name;
-}
-
-void	ClapTrap::setHp(int amount) {
-	this->_hp= amount;
-}
-
-void	ClapTrap::setEp(int amount) {
-	this->_ep= amount;
-}
-
-void	ClapTrap::setDmg(int amount) {
-	this->_dmg = amount;
 }
