@@ -28,6 +28,12 @@ int main(void) {
     std::cout << "TAKING DAMAGE" << std::endl;
     target.takeDamage(5);
     std::cout << "Target HP: " << target.getHp() << " (Expected: 5)" << std::endl;
+	target.beRepaired(15);
+	std::cout << "HP:   " << target.getHp() << " (Expected: 10)" << std::endl;
+	target.takeDamage(10);
+	std::cout << "HP:   " << target.getHp() << " (Expected: 0)" << std::endl;
+	target.beRepaired(15);
+	std::cout << "HP:   " << target.getHp() << " (Expected: 0)" << std::endl;
 	std::cout << std::endl;
 
     std::cout << "DEPLETING ENERGY" << std::endl;

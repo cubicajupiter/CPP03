@@ -13,17 +13,17 @@
 #include "ClapTrap.hpp"
 
 //DEFAULT CONSTRUCTOR
-ClapTrap::ClapTrap(void) : _name("Robot"), _hp(10), _ep(10), _dmg(0) {
+ClapTrap::ClapTrap(void) : _name("Robot"), _hp(10), _ep(10), _dmg(0), _max_hp(10) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
 //COPY CONSTRUCTOR
-ClapTrap::ClapTrap(const ClapTrap& other) : _name(other.getName()), _hp(other.getHp()), _ep(other.getEp()), _dmg(other.getDmg()) {
+ClapTrap::ClapTrap(const ClapTrap& other) : _name(other.getName()), _hp(other.getHp()), _ep(other.getEp()), _dmg(other.getDmg()), _max_hp(other.getMaxHp()) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
 //NAME CONSTRUCTOR OVERLOAD
-ClapTrap::ClapTrap(std::string name, int hp=10, int ep=10, int dmg=0) : _name(name), _hp(hp), _ep(ep), _dmg(dmg) {
+ClapTrap::ClapTrap(std::string name, int hp=10, int ep=10, int dmg=0) : _name(name), _hp(hp), _ep(ep), _dmg(dmg), _max_hp(hp) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
@@ -40,39 +40,61 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 		this->_hp = other.getHp();
 		this->_ep = other.getEp();
 		this->_dmg = other.getDmg();
+		this->_max_hp = other.getMaxHp();
 	}
 	return *this;
 }
 
 
 //SUBJECT FUNCTIONS
-void	ClapTrap::attack(const std::string& target)
-{
+void	ClapTrap::attack(const std::string& target) {
 	if (this->_hasHealth() && this->_hasEnergy()) {
-		std::cout << "Claptrap " << this->_name << " attacks " << target << ", causing " << this->_dmg << " points of damage!" << std::endl;
+		std::cout << "Claptrap " << this->_name << " attacks " << target \
+				<< ", causing " << this->_dmg << " points of damage!" << std::endl;
+		this->_ep--;
 	}
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "Claptrap " << this->_name << " takes damage for " << amount << " HP." << std::endl;
+void	ClapTrap::takeDamage(unsigned int amount) {
+	if (this->_hasHealth()) {
+		if (amount >= (unsigned int) this->_hp)
+			this->_hp = 0;
+		else
+			this->_hp -= amount;
+		std::cout << "Claptrap " << this->_name << " takes damage for " << amount << " HP." << std::endl;
+	}
 }
 
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	this->_hp += amount;
-	std::cout << "Claptrap " << this->_name << " repaired for " << amount << " HP." << std::endl;
+void	ClapTrap::beRepaired(unsigned int amount) {
+	int		actual_amount;
+
+	if (this->_hasHealth() && this->_hasEnergy()) {
+		if (this->_hp + amount > (unsigned int) this->_max_hp)
+			actual_amount = amount - ((this->_hp + amount) - this->_max_hp);
+		else
+			actual_amount = amount;
+		this->_hp += actual_amount;
+		std::cout << "Claptrap " << this->_name << " repaired for " << actual_amount << " HP." << std::endl;
+		this->_ep--;
+	}
 }
 
 
 //ADDITIONAL PRIVATE HELPERS
 bool	ClapTrap::_hasHealth(void) const {
-	return (this->_hp > 0);
+	if (this->_hp > 0)
+		return true;
+	std::cout << this->_name << " is RIP :(" << std::endl;
+	return false;
 }
 
 bool	ClapTrap::_hasEnergy(void) const {
-	return (this->_ep > 0);
+	if (this->_ep > 0)
+		return true;
+	std::cout << this->_name << " is out of juice." << std::endl;
+	return false;
 }
+
 
 //GETTERS
 std::string	ClapTrap::getName(void) const {
@@ -91,19 +113,6 @@ int	ClapTrap::getDmg(void) const {
 	return this->_dmg;
 }
 
-//SETTERS
-void	ClapTrap::setName(std::string name) {
-	this->_name = name;
-}
-
-void	ClapTrap::setHp(int amount) {
-	this->_hp= amount;
-}
-
-void	ClapTrap::setEp(int amount) {
-	this->_ep= amount;
-}
-
-void	ClapTrap::setDmg(int amount) {
-	this->_dmg = amount;
+int	ClapTrap::getMaxHp(void) const {
+	return this->_max_hp;
 }

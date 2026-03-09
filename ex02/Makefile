@@ -10,18 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			:=
+NAME			:=fragtrap
 
 SRCDIR			:=src
 VPATH			:=$(SRCDIR)
-SRCS			:=main.cpp
+SRCS			:=main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJDIR			:=obj
 OBJS			:=$(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 INC				:=inc
 INCLUDES		:=-I $(INC)
-HEADER			:=$(INC)/___.hpp
+HEADER			:=$(INC)/ClapTrap.hpp $(INC)/ScavTrap.hpp $(INC)/FragTrap.hpp
 
 COMPILER		:=c++
 CXXFLAGS		:=-Wall -Wextra -Werror -O3 -march=native -std=c++17

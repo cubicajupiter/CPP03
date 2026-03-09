@@ -40,6 +40,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 		this->_hp = other.getHp();
 		this->_ep = other.getEp();
 		this->_dmg = other.getDmg();
+		this->_max_hp = other.getMaxHp();
 	}
 	return *this;
 }
@@ -65,10 +66,16 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
+	int		actual_amount;
+
 	if (this->_hasHealth() && this->_hasEnergy()) {
-		std::cout << "Claptrap " << this->_name << " repaired for " << amount << " HP." << std::endl;
+		if (this->_hp + amount > (unsigned int) this->_max_hp)
+			actual_amount = amount - ((this->_hp + amount) - this->_max_hp);
+		else
+			actual_amount = amount;
+		this->_hp += actual_amount;
+		std::cout << "Claptrap " << this->_name << " repaired for " << actual_amount << " HP." << std::endl;
 		this->_ep--;
-		this->_hp += amount;
 	}
 }
 
@@ -104,4 +111,8 @@ int	ClapTrap::getEp(void) const {
 
 int	ClapTrap::getDmg(void) const {
 	return this->_dmg;
+}
+
+int	ClapTrap::getMaxHp(void) const {
+	return this->_max_hp;
 }

@@ -21,6 +21,7 @@ class ClapTrap {
 		int				_hp;
 		int				_ep;
 		int				_dmg;
+		int				_max_hp;
 
 		bool		_hasHealth	() const ;
 		bool		_hasEnergy	() const ;
@@ -41,4 +42,5 @@ class ClapTrap {
 		int			getHp		() const ;
 		int			getEp		() const ;
 		int			getDmg		() const ;
+		int			getMaxHp	() const ;
 };

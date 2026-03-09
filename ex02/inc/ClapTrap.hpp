@@ -14,15 +14,14 @@
 #include <iostream>
 
 class ClapTrap {
-
 		std::string		_name;
 		int				_hp;
 		int				_ep;
 		int				_dmg;
+		int				_max_hp;
 
 		bool		_hasHealth () const ;
 		bool		_hasEnergy () const ;
-		void		_logPut ( std::string, int ) const ;
 
 	public:
 
@@ -40,9 +39,5 @@ class ClapTrap {
 		int			getHp () const ;
 		int			getEp () const ;
 		int			getDmg () const ;
-
-		void		setName		( std::string );
-		void		setHp		( int );
-		void		setEp		( int );
-		void		setDmg		( int );
+		int			getMaxHp	() const ;
 };
