@@ -6,7 +6,7 @@
 /*   By: jvalkama <jvalkama@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:29:02 by jvalkama          #+#    #+#             */
-/*   Updated: 2026/02/19 10:48:49 by jvalkama         ###   ########.fr       */
+/*   Updated: 2026/03/08 13:50:08 by jvalkama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,4 @@ class ClapTrap {
 		int			getHp () const ;
 		int			getEp () const ;
 		int			getDmg () const ;
-
-		void		setName		( std::string );
-		void		setHp		( int );
-		void		setEp		( int );
-		void		setDmg		( int );
 };

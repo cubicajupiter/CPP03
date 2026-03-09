@@ -6,7 +6,7 @@
 /*   By: jvalkama <jvalkama@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 15:29:04 by jvalkama          #+#    #+#             */
-/*   Updated: 2026/02/19 10:47:57 by jvalkama         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:01:21 by jvalkama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,48 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 
 
 //SUBJECT FUNCTIONS
-void	ClapTrap::attack(const std::string& target)
-{
+void	ClapTrap::attack(const std::string& target) {
 	if (this->_hasHealth() && this->_hasEnergy()) {
-		std::cout << "Claptrap " << this->_name << " attacks " << target << ", causing " << this->_dmg << " points of damage!" << std::endl;
+		std::cout << "Claptrap " << this->_name << " attacks " << target \
+				<< ", causing " << this->_dmg << " points of damage!" << std::endl;
+		this->_ep--;
 	}
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "Claptrap " << this->_name << " takes damage for " << amount << " HP." << std::endl;
+void	ClapTrap::takeDamage(unsigned int amount) {
+	if (this->_hasHealth()) {
+		if (amount >= (unsigned int) this->_hp)
+			this->_hp = 0;
+		else
+			this->_hp -= amount;
+		std::cout << "Claptrap " << this->_name << " takes damage for " << amount << " HP." << std::endl;
+	}
 }
 
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	this->_hp += amount;
-	std::cout << "Claptrap " << this->_name << " repaired for " << amount << " HP." << std::endl;
+void	ClapTrap::beRepaired(unsigned int amount) {
+	if (this->_hasHealth() && this->_hasEnergy()) {
+		std::cout << "Claptrap " << this->_name << " repaired for " << amount << " HP." << std::endl;
+		this->_ep--;
+		this->_hp += amount;
+	}
 }
 
 
 //ADDITIONAL PRIVATE HELPERS
 bool	ClapTrap::_hasHealth(void) const {
-	return (this->_hp > 0);
+	if (this->_hp > 0)
+		return true;
+	std::cout << this->_name << " is RIP :(" << std::endl;
+	return false;
 }
 
 bool	ClapTrap::_hasEnergy(void) const {
-	return (this->_ep > 0);
+	if (this->_ep > 0)
+		return true;
+	std::cout << this->_name << " is out of juice." << std::endl;
+	return false;
 }
+
 
 //GETTERS
 std::string	ClapTrap::getName(void) const {
@@ -89,21 +104,4 @@ int	ClapTrap::getEp(void) const {
 
 int	ClapTrap::getDmg(void) const {
 	return this->_dmg;
-}
-
-//SETTERS
-void	ClapTrap::setName(std::string name) {
-	this->_name = name;
-}
-
-void	ClapTrap::setHp(int amount) {
-	this->_hp= amount;
-}
-
-void	ClapTrap::setEp(int amount) {
-	this->_ep= amount;
-}
-
-void	ClapTrap::setDmg(int amount) {
-	this->_dmg = amount;
 }
