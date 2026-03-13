@@ -16,10 +16,10 @@ class FragTrap : public ClapTrap {
 
 	public:
 		FragTrap				();
-		FragTrap				( const FragTrap& );
+		FragTrap				( const FragTrap& );;
 		FragTrap				( std::string );
 		~FragTrap				();
-		FragTrap&	operator=	( const ClapTrap& );
+		FragTrap&	operator=	( const FragTrap& );
 
 		void		highFivesGuys ();
 };

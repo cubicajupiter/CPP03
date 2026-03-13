@@ -13,7 +13,7 @@
 #include "ScavTrap.hpp"
 
 //DEFAULT CONSTRUCTOR
-ScavTrap::ScavTrap(void) : ClapTrap() {
+ScavTrap::ScavTrap(void) : ClapTrap("Scavvieboi", 100, 50, 20) {
 	std::cout << "ScavTrap " << this->getName() << " constructed!" << std::endl;
 }
 
@@ -32,7 +32,18 @@ ScavTrap::~ScavTrap(void) {
 	std::cout << "ScavTrap " << this->getName() << " destroyed." << std::endl;
 }
 
+void	ScavTrap::attack(const std::string& target) {
+	if (this->_hasHealth() && this->_hasEnergy()) {
+		std::cout << "ScavTrap " << this->_name << " attacks " << target \
+				<< ", causing " << this->_dmg << " points of damage!" << std::endl;
+		this->_ep--;
+	}
+}
+
 //SUBJECT FUNCTIONS
 void	ScavTrap::guardGate(void) {
-	std::cout << "ScavTrap " << this->getName() << " is now in Gatekeeper mode." << std::endl;
+	if (this->_hasEnergy()) {
+		std::cout << "ScavTrap " << this->getName() << " is now in Gatekeeper mode." << std::endl;
+		this->_ep--;
+	}
 }

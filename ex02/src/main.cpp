@@ -17,6 +17,8 @@ int	main(void) {
 	FragTrap fraggy("Hi-five bot");
     std::cout << std::endl;
 
+	FragTrap frigg=fraggy;
+	frigg.attack("crap");
     std::cout << "STAT CHECK" << std::endl;
     std::cout << "Name: " << fraggy.getName() << std::endl;
     std::cout << "HP:   " << fraggy.getHp() << " (Expected: 100)" << std::endl;

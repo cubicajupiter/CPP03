@@ -32,8 +32,23 @@ FragTrap::~FragTrap(void) {
 	std::cout << "FragTrap " << this->getName() << " destroyed." << std::endl;
 }
 
+//ASSIGNMENT OPERATOR
+FragTrap&	FragTrap::operator=(const FragTrap& other) {
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
+	if (this != &other) {
+		this->_name = other.getName();
+		this->_hp = other.getHp();
+		this->_ep = other.getEp();
+		this->_dmg = other.getDmg();
+		this->_max_hp = other.getMaxHp();
+	}
+	return *this;
+}
 
 //SUBJECT FUNCTION
 void	FragTrap::highFivesGuys(void) {
-	std::cout << "FragTrap " << this->getName() << " requests positive high-fives." << std::endl;
+	if (!this->_hasEnergy()) {
+		std::cout << "FragTrap " << this->getName() << " requests positive high-fives." << std::endl;
+		this->_ep--;
+	}
 }

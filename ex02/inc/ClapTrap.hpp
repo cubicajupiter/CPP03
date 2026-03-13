@@ -14,11 +14,12 @@
 #include <iostream>
 
 class ClapTrap {
+	protected:
 		std::string		_name;
-		int				_hp;
-		int				_ep;
-		int				_dmg;
-		int				_max_hp;
+		unsigned		_hp;
+		unsigned		_ep;
+		unsigned		_dmg;
+		unsigned		_max_hp;
 
 		bool		_hasHealth () const ;
 		bool		_hasEnergy () const ;
@@ -31,13 +32,13 @@ class ClapTrap {
 		~ClapTrap				();
 		ClapTrap&	operator=	( const ClapTrap& );
 
-		void		attack ( const std::string & );
-		void		takeDamage ( unsigned int );
-		void		beRepaired ( unsigned int );
+		void		attack		( const std::string & );
+		void		takeDamage	( unsigned int );
+		void		beRepaired	( unsigned int );
 
-		std::string	getName () const ;
-		int			getHp () const ;
-		int			getEp () const ;
-		int			getDmg () const ;
-		int			getMaxHp	() const ;
+		std::string		getName 	() const ;
+		unsigned		getHp 		() const ;
+		unsigned		getEp 		() const ;
+		unsigned		getDmg 		() const ;
+		unsigned		getMaxHp 	() const ;
 };

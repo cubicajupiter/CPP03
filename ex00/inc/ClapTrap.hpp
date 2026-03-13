@@ -16,12 +16,12 @@
 #include <iostream>
 
 class ClapTrap {
-
+	private:
 		std::string		_name;
-		int				_hp;
-		int				_ep;
-		int				_dmg;
-		int				_max_hp;
+		unsigned		_hp;
+		unsigned		_ep;
+		unsigned		_dmg;
+		unsigned		_max_hp;
 
 		bool		_hasHealth	() const ;
 		bool		_hasEnergy	() const ;
@@ -39,8 +39,8 @@ class ClapTrap {
 		void		beRepaired	( unsigned int );
 
 		std::string	getName		() const ;
-		int			getHp		() const ;
-		int			getEp		() const ;
-		int			getDmg		() const ;
-		int			getMaxHp	() const ;
+		unsigned	getHp		() const ;
+		unsigned	getEp		() const ;
+		unsigned	getDmg		() const ;
+		unsigned	getMaxHp	() const ;
 };

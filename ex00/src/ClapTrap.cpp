@@ -57,7 +57,7 @@ void	ClapTrap::attack(const std::string& target) {
 
 void	ClapTrap::takeDamage(unsigned int amount) {
 	if (this->_hasHealth()) {
-		if (amount >= (unsigned int) this->_hp)
+		if (amount >= this->_hp)
 			this->_hp = 0;
 		else
 			this->_hp -= amount;
@@ -69,7 +69,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	int		actual_amount;
 
 	if (this->_hasHealth() && this->_hasEnergy()) {
-		if (this->_hp + amount > (unsigned int) this->_max_hp)
+		if (this->_hp + amount > this->_max_hp)
 			actual_amount = amount - ((this->_hp + amount) - this->_max_hp);
 		else
 			actual_amount = amount;
@@ -101,18 +101,18 @@ std::string	ClapTrap::getName(void) const {
 	return this->_name;
 }
 
-int	ClapTrap::getHp(void) const {
+unsigned	ClapTrap::getHp(void) const {
 	return this->_hp;
 }
 
-int	ClapTrap::getEp(void) const {
+unsigned	ClapTrap::getEp(void) const {
 	return this->_ep;
 }
 
-int	ClapTrap::getDmg(void) const {
+unsigned	ClapTrap::getDmg(void) const {
 	return this->_dmg;
 }
 
-int	ClapTrap::getMaxHp(void) const {
+unsigned	ClapTrap::getMaxHp(void) const {
 	return this->_max_hp;
 }
