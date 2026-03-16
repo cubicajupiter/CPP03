@@ -32,6 +32,21 @@ ScavTrap::~ScavTrap(void) {
 	std::cout << "ScavTrap " << this->getName() << " destroyed." << std::endl;
 }
 
+//ASSIGNMENT OPERATOR OVERLOAD
+ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	if (this != &other) {
+		this->_name = other.getName();
+		this->_hp = other.getHp();
+		this->_ep = other.getEp();
+		this->_dmg = other.getDmg();
+		this->_max_hp = other.getMaxHp();
+	}
+	return *this;
+}
+
+
+//SUBJECT FUNCTIONS
 void	ScavTrap::attack(const std::string& target) {
 	if (this->_hasHealth() && this->_hasEnergy()) {
 		std::cout << "ScavTrap " << this->_name << " attacks " << target \
@@ -40,7 +55,6 @@ void	ScavTrap::attack(const std::string& target) {
 	}
 }
 
-//SUBJECT FUNCTIONS
 void	ScavTrap::guardGate(void) {
 	if (this->_hasEnergy()) {
 		std::cout << "ScavTrap " << this->getName() << " is now in Gatekeeper mode." << std::endl;
