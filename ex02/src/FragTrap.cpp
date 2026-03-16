@@ -47,7 +47,7 @@ FragTrap&	FragTrap::operator=(const FragTrap& other) {
 
 //SUBJECT FUNCTION
 void	FragTrap::highFivesGuys(void) {
-	if (!this->_hasEnergy()) {
+	if (this->_hasEnergy()) {
 		std::cout << "FragTrap " << this->getName() << " requests positive high-fives." << std::endl;
 		this->_ep--;
 	}

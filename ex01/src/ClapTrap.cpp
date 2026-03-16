@@ -13,17 +13,17 @@
 #include "ClapTrap.hpp"
 
 //DEFAULT CONSTRUCTOR
-ClapTrap::ClapTrap(void) : _name("Robot"), _hp(10), _ep(10), _dmg(0) {
+ClapTrap::ClapTrap(void) : _name("Robot"), _hp(10), _ep(10), _dmg(0), _max_hp(10) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
 //COPY CONSTRUCTOR
-ClapTrap::ClapTrap(const ClapTrap& other) : _name(other.getName()), _hp(other.getHp()), _ep(other.getEp()), _dmg(other.getDmg()) {
+ClapTrap::ClapTrap(const ClapTrap& other) : _name(other.getName()), _hp(other.getHp()), _ep(other.getEp()), _dmg(other.getDmg()), _max_hp(other.getMaxHp()) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
 //NAME CONSTRUCTOR OVERLOAD
-ClapTrap::ClapTrap(std::string name, int hp=10, int ep=10, int dmg=0) : _name(name), _hp(hp), _ep(ep), _dmg(dmg) {
+ClapTrap::ClapTrap(std::string name, int hp=10, int ep=10, int dmg=0) : _name(name), _hp(hp), _ep(ep), _dmg(dmg), _max_hp(hp) {
 	std::cout << "Claptrap " << this->_name << " constructed!" << std::endl;
 }
 
@@ -34,7 +34,7 @@ ClapTrap::~ClapTrap(void) {
 
 //ASSIGNMENT OPERATOR OVERLOAD
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << "Copy assignment operator calledssss" << this->_name << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other) {
 		this->_name = other.getName();
 		this->_hp = other.getHp();
@@ -70,7 +70,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 
 	if (this->_hasHealth() && this->_hasEnergy()) {
 		if (this->_hp + amount > this->_max_hp)
-			actual_amount = amount - ((this->_hp + amount) - this->_max_hp);
+			actual_amount = this->_max_hp - this->_hp;
 		else
 			actual_amount = amount;
 		this->_hp += actual_amount;

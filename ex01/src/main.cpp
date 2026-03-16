@@ -30,7 +30,6 @@ int	main(void) {
     std::cout << "INHERITED CLASS ACTIONS" << std::endl;
     scavy.attack("a random Bandit");
     std::cout << "EP after attack: " << scavy.getEp() << " (Expected: 49)" << std::endl;
-    std::cout << std::endl;
 	scavy.takeDamage(10);
 	std::cout << "HP:   " << scavy.getHp() << " (Expected: 90)" << std::endl;
 	scavy.beRepaired(15);
