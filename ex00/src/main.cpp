@@ -22,7 +22,7 @@ int main(void) {
     clappyboi.attack("dummy bot");
     clappyboi.beRepaired(5);
     std::cout << "clappyboi EP: " << clappyboi.getEp() << " (Expected: 8)" << std::endl;
-    std::cout << "clappyboi HP: " << clappyboi.getHp() << " (Expected: 15)" << std::endl;
+    std::cout << "clappyboi HP: " << clappyboi.getHp() << " (Expected: 10)" << std::endl;
 	std::cout << std::endl;
 	
     std::cout << "TAKING DAMAGE" << std::endl;
